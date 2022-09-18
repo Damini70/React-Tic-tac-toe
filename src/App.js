@@ -42,7 +42,7 @@ const App = () => {
     if (winner) {
       if (winner === "O") {
         let { oScore } = scores;
-        oScore += 1;
+        oScore += 2;
         alert("Congratulations! O win");
         setBoard(Array(9).fill(null))
         setScores({ ...scores, oScore })
@@ -50,7 +50,7 @@ const App = () => {
       
         let { xScore } = scores;
         
-        xScore += 1;
+        xScore += 2;
         alert("Congratulations! X win");
         setBoard(Array(9).fill(null))
         setScores({ ...scores, xScore })
