@@ -22,6 +22,7 @@ const App = () => {
   const [board, setBoard] = useState(Array(9).fill(null))
   const [scores, setScores] = useState({ xScore: 0, oScore: 0 })
   const [gameOver, setGameOver] = useState(false);
+  let winner;
 
   const handleBoxClick = (boxIdx) => {
     // Step 1: Update the board
@@ -36,24 +37,29 @@ const App = () => {
     setBoard(updatedBoard);
 
     // Step 2: Check if either player has won the game
-    const winner = checkWinner(updatedBoard);
+     winner = checkWinner(updatedBoard);
 
     if (winner) {
       if (winner === "O") {
         let { oScore } = scores;
         oScore += 1;
+        alert("Congratulations! O win");
+        setBoard(Array(9).fill(null))
         setScores({ ...scores, oScore })
       } else {
         let { xScore } = scores;
         xScore += 1;
+        alert("Congratulations! X win");
+        setBoard(Array(9).fill(null))
         setScores({ ...scores, xScore })
       }
     }
-
+   
     // Step 3: Change active player
     setXPlaying(!xPlaying);
+    
   }
-
+  
   const checkWinner = (board) => {
     for (let i = 0; i < WIN_CONDITIONS.length; i++) {
       const [x, y, z] = WIN_CONDITIONS[i];
@@ -70,12 +76,13 @@ const App = () => {
     setGameOver(false);
     setBoard(Array(9).fill(null));
   }
-
+  
   return (
     <div className="App">
       <ScoreBoard scores={scores} xPlaying={xPlaying} />
       <Board board={board} onClick={gameOver ? resetBoard : handleBoxClick} />
       <ResetButton resetBoard={resetBoard} />
+      {/* <button style={{margin: "4rem"}} onClick={()=>undo()}>Undo</button> */}
     </div>
   );
 }
