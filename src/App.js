@@ -41,14 +41,14 @@ const App = () => {
 
     if (winner) {
       if (winner === "O") {
-        alert("O is Winner");
+        
         let { oScore } = scores;
         oScore += 1;
         alert("Congratulations! O win");
         setBoard(Array(9).fill(null))
         setScores({ ...scores, oScore })
       } else {
-        alert("X is Winner");
+       
         let { xScore } = scores;
         
         xScore += 1;
